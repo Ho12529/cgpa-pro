@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1424">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CGPA Pro">
+<title>CGPA Pro - B.Sc. Information Technology</title>
+<style>
+:root{--bg:#0d1424;--card:#151e33;--in:#0d1424;--ink:#eef0f6;--mute:#8f9ab3;--line:#26314d;--gold:#f2b84b;--gb:#2b2410;--bad:#ff8f7e}
+@media (prefers-color-scheme:light){:root{--bg:#eef1f8;--card:#fff;--in:#f4f6fb;--ink:#121a2e;--mute:#5d6882;--line:#d5dbe8;--gold:#a8650a;--gb:#fbefd6;--bad:#b3392a}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 "Avenir Next","Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+main{max-width:620px;margin:0 auto;padding:16px 14px 60px}
+h1{font:700 25px/1.1 Georgia,"Times New Roman",serif;margin:4px 0 2px}
+.sub{color:var(--mute);font-size:13px;margin:0 0 12px}
+.hero{background:linear-gradient(160deg,var(--card),var(--bg));border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:16px;align-items:center}
+.ring{position:relative;width:128px;height:128px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font:700 32px/1 Georgia,serif;color:var(--gold)}
+.ring small{color:var(--mute);font-size:11px}
+.hs{flex:1;min-width:0}
+.cls{font:700 18px/1.2 Georgia,serif;margin-bottom:4px}
+.mu{color:var(--mute);font-size:13px}
+.bar{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+button,select,input{font:inherit;color:var(--ink)}
+button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 13px;cursor:pointer}
+button.p{background:var(--gold);color:#1b1405;border-color:var(--gold);font-weight:700}
+button.x{padding:5px 9px;color:var(--bad)}
+input,select{background:var(--in);border:1px solid var(--line);border-radius:8px;padding:8px 6px;width:100%;min-width:0}
+input[type=number],select.g{text-align:center}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px}
+details>summary{list-style:none;padding:12px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+.sn{font-weight:700;font-size:15px}
+.sb{font-size:12px;color:var(--mute);text-align:right;white-space:nowrap}
+.sb b{color:var(--gold)}
+.bd{padding:0 12px 12px}
+.cr{display:grid;grid-template-columns:1fr 50px 64px 32px;gap:6px;margin-bottom:8px;align-items:start}
+.cr input.cd{font-weight:700;padding:5px 6px}
+.tt{color:var(--mute);font-size:11px;padding:2px 6px 0}
+.set{padding:12px}
+.set label{color:var(--mute);font-size:12px;display:block}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+.pr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.pl{background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px;margin-top:14px}
+.pl h2{font:700 17px Georgia,serif;margin:0 0 10px}
+.pl label{color:var(--mute);font-size:12px;display:block}
+#need{font-size:16px}#need b{color:var(--gold);font-size:22px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<h1>CGPA Pro</h1>
+<p class="sub">B.Sc. Information Technology, Modibbo Adama University. Course list and units follow the department handbook (Dec 2021).</p>
+<div class="hero">
+ <div class="ring"><svg width="128" height="128" viewBox="0 0 128 128"><circle cx="64" cy="64" r="54" fill="none" stroke="var(--line)" stroke-width="10"/><circle id="rg" cx="64" cy="64" r="54" fill="none" stroke="var(--gold)" stroke-width="10" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"/></svg>
+ <div class="t"><b id="cg">0.00</b><small id="sc">CGPA</small></div></div>
+ <div class="hs"><div class="cls" id="cl">-</div><div class="mu" id="tu"></div><div class="mu" id="tp"></div><div class="mu" id="pr"></div></div>
+</div>
+<div class="bar">
+ <button type="button" data-a="addsem" class="p">+ Add semester</button>
+ <button type="button" data-a="export">Save backup file</button>
+ <button type="button" data-a="import">Load backup file</button>
+ <button type="button" data-a="copy">Copy summary</button>
+ <button type="button" id="inst" class="p" hidden>Install app</button>
+</div>
+<input type="file" id="fi" accept=".json,application/json" hidden>
+<div id="list"></div>
+<div class="pl">
+ <h2>Target planner</h2>
+ <div class="pr"><div><label for="tg">Target CGPA</label><input id="tg" type="number" inputmode="decimal" step="0.01"></div>
+ <div><label for="ps">Plan semester</label><select id="ps"></select></div></div>
+ <div id="need"></div>
+</div>
+<details style="margin-top:14px"><summary><span class="sn">Settings</span></summary>
+ <div class="set">
+  <label for="entry">Programme and entry level</label>
+  <select id="entry"><option value="100">UTME: 100 Level, 8 semesters</option><option value="200">Direct Entry: 200 Level, 6 semesters</option></select>
+  <button type="button" data-a="load" style="margin-top:8px">Load department course list</button>
+  <p class="mu">Loading replaces your current semesters. Save a backup first.</p>
+  <label for="scale" style="margin-top:8px">Grading scale</label>
+  <select id="scale"><option value="5">5-point: A5 B4 C3 D2 E1 F0</option><option value="4">4-point: A4 B3 C2 D1 F0</option></select>
+  <label style="margin-top:8px">Class cut-offs: First, 2nd Upper, 2nd Lower, Third</label>
+  <div class="g4"><input type="number" step="0.01" data-k="0" aria-label="First class"><input type="number" step="0.01" data-k="1" aria-label="Second class upper"><input type="number" step="0.01" data-k="2" aria-label="Second class lower"><input type="number" step="0.01" data-k="3" aria-label="Third class"></div>
+  <p class="mu">The handbook does not state the grading scale or cut-offs, so check them against the university regulations and edit here.</p>
+ </div>
+</details>
+<p class="mu" style="margin-top:14px">Estimate only. The official result is the one issued by the university.</p>
+<p class="mu" id="msg" aria-live="polite" style="margin-top:14px"></p>
+<p class="mu">Your results stay on this phone. If you clear browser data or change phone, they are lost, so use Save backup file now and then.</p>
+</main>
+<script>
+var CUR={"100|1": [["IFT101", "Computer System Installation and Maintenance", 3], ["CSC101", "Introduction to Computer Science", 3], ["CHM101", "General Chemistry I", 3], ["CHM107", "General Practical Chemistry I", 1], ["GST101", "Communications in English I", 2], ["GST107", "Use Library, Study Skills and ICT", 2], ["MTH101", "General Mathematics I", 3], ["PHY101", "General Physics I", 3], ["PHY107", "General Physics Laboratory I", 1]], "100|2": [["IFT102", "Introduction to Information Systems", 2], ["CSC102", "Introduction to Problem Solving", 2], ["GST102", "Communications in English II", 2], ["GST106", "Logic, Philosophy and Human Existence", 2], ["GST104", "Nigerian People and Culture", 2], ["MTH102", "General Mathematics II", 3], ["PHY102", "General Physics II", 3], ["PHY108", "General Physics Laboratory II", 1], ["STA102", "Statistics for Physical Science and Engineering", 3]], "200|1": [["CSC201", "Computer Programming I", 3], ["CSC203", "Discrete Structures", 3], ["IFT201", "Introduction to Web Computing", 3], ["IFT203", "Fundamentals of Information Technology", 3], ["IFT205", "Information Technology in Business", 2], ["IFT207", "Groupware Application in Business", 2], ["GST205", "Introduction to Entrepreneurial Skills", 2]], "200|2": [["CSC202", "Computer Programming II", 3], ["IFT202", "Introduction to Software Engineering", 2], ["CSC204", "Human Computer Interaction", 2], ["IFT204", "System Analysis and Design for IT", 3], ["IFT206", "Database Management System", 2], ["IFT208", "Cyberpreneurship and Cyber Law", 2], ["MTH212", "Linear Algebra I", 2], ["GST202", "History and Philosophy of Science", 2], ["GST204", "Peace Studies and Conflict Resolution", 2]], "300|1": [["IFT301", "Data Communications and Networking", 3], ["IFT303", "Data Analysis", 2], ["IFT305", "Data Structures and Algorithms", 3], ["IFT307", "Operating Systems", 3], ["IFT309", "Computer Organization and Architecture", 3], ["IFT311", "Web Application Development", 3], ["GST301", "Introduction to Entrepreneurship", 2], ["IFT313", "Network Servers and Infrastructures (elective)", 3], ["IFT315", "Computer Crime, Forensics and Auditing (elective)", 3]], "300|2": [["SWE399", "Students Industrial Work Experience Scheme (SIWES)", 6]], "400|1": [["IFT401", "IT Project Development and Management", 3], ["IFT403", "Mobile and Pervasive Computing", 3], ["IFT405", "Integrative Programming and Technologies", 3], ["IFT407", "Enterprise Systems Architecture", 2], ["IFT409", "Research Methodology in IT", 2], ["IFT411", "Mobile Application Development", 2], ["IFT497", "Project I", 2], ["IFT413", "Information Storage and Management Technology (elective)", 3], ["IFT415", "Network Security (elective)", 3]], "400|2": [["IFT402", "Applied Networks and Security", 3], ["IFT404", "Information Assurance and Security", 3], ["IFT406", "System Administration and Management", 3], ["IFT408", "Social and Professional Issues in IT", 2], ["IFT410", "System Integration and Architecture", 3], ["IFT412", "Special Topics in IT", 3], ["IFT498", "Project II", 4]]};
+var G5={A:5,B:4,C:3,D:2,E:1,F:0},G4={A:4,B:3,C:2,D:1,F:0},KEY="cgpa_pro_it_v1";
+var LV=["","1st semester","2nd semester"];
+function mk(entry){var s=[];for(var l=entry;l<=400;l+=100)for(var h=1;h<=2;h++){var k=l+"|"+h;
+ s.push({n:l+" Level, "+LV[h],o:0,c:(CUR[k]||[]).map(function(x){return[x[0],x[2],"",x[1]]})})}return s}
+function def(){return{scale:5,t:3.5,entry:200,cut:[4.5,3.5,2.4,1.5],s:mk(200)}}
+var st;try{st=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!st||!st.s)st=def();
+var $=function(i){return document.getElementById(i)};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function sc(){return st.scale==4?G4:G5}
+function mx(){return st.scale==4?4:5}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
+function calc(m){var U=0,P=0,A=0;m.c.forEach(function(c){var p=sc()[c[2]];if(p==null)return;var u=+c[1]||0;U+=u;P+=u*p;if(p>0)A+=u});return[U,P,A]}
+function klass(x){var f=st.cut;return x>=f[0]?"First Class":x>=f[1]?"Second Class Upper":x>=f[2]?"Second Class Lower":x>=f[3]?"Third Class":"Pass or below"}
+function f2(x){return x.toFixed(2)}
+function render(){
+ var h="";
+ st.s.forEach(function(m,i){
+  var rows=m.c.map(function(c,j){var o='<option value="">-</option>'+Object.keys(sc()).map(function(k){return'<option'+(k==c[2]?" selected":"")+'>'+k+'</option>'}).join("");
+   return'<div class="cr"><div><input class="cd" data-i="'+i+'" data-j="'+j+'" data-f="c" value="'+esc(c[0])+'" placeholder="Code" aria-label="Course code">'+(c[3]?'<div class="tt">'+esc(c[3])+'</div>':'')+'</div><input type="number" inputmode="decimal" data-i="'+i+'" data-j="'+j+'" data-f="cu" value="'+esc(c[1])+'" aria-label="Units"><select class="g" data-i="'+i+'" data-j="'+j+'" data-f="cg" aria-label="Grade">'+o+'</select><button type="button" class="x" data-a="rm" data-i="'+i+'" data-j="'+j+'" aria-label="Remove course">x</button></div>'}).join("");
+  h+='<details data-i="'+i+'"'+(m.o?" open":"")+'><summary><span class="sn">'+esc(m.n)+'</span><span class="sb">GPA <b data-gpa="'+i+'">-</b><br>CGPA <b data-cum="'+i+'">-</b></span></summary><div class="bd"><input data-i="'+i+'" data-f="n" value="'+esc(m.n)+'" aria-label="Semester name" style="margin-bottom:8px">'+rows+'<button type="button" data-a="addc" data-i="'+i+'">+ Add course</button> <button type="button" class="x" data-a="del" data-i="'+i+'">Delete semester</button></div></details>'});
+ $("list").innerHTML=h;$("scale").value=st.scale;$("entry").value=st.entry;$("tg").value=st.t;
+ document.querySelectorAll("[data-k]").forEach(function(e){e.value=st.cut[e.dataset.k]});update()}
+function update(){
+ var TU=0,TP=0,TA=0,sel=$("ps").value;
+ var ps=st.s.map(function(m,i){var r=calc(m);TU+=r[0];TP+=r[1];TA+=r[2];
+  var a=document.querySelector('[data-gpa="'+i+'"]'),b=document.querySelector('[data-cum="'+i+'"]');
+  if(a)a.textContent=r[0]?f2(r[1]/r[0]):"-";if(b)b.textContent=TU?f2(TP/TU):"-";return r});
+ var cg=TU?TP/TU:0;
+ $("cg").textContent=f2(cg);$("sc").textContent="CGPA / "+mx()+".00";
+ $("rg").setAttribute("stroke-dashoffset",339.3*(1-Math.min(cg/mx(),1)));
+ $("cl").textContent=TU?klass(cg):"Enter your grades";
+ $("tu").textContent="Units graded: "+TU;$("tp").textContent="Total points: "+f2(TP);$("pr").textContent="Units passed: "+TA+" of 148";
+ $("ps").innerHTML=st.s.map(function(m,i){return'<option value="'+i+'">'+esc(m.n)+'</option>'}).join("");
+ $("ps").value=(sel&&st.s[sel])?sel:st.s.length-1;
+ var m=ps[+$("ps").value],t=+st.t||0;
+ if(!m){$("need").textContent="Add a semester to plan.";return}
+ var cu=0;(st.s[+$("ps").value].c).forEach(function(c){cu+=+c[1]||0});
+ var other=TP-m[1],otherU=TU-m[0],tot=otherU+cu,need=cu?(t*tot-other)/cu:0;
+ $("need").innerHTML=!cu?"Add courses with units to this semester to plan it.":need>mx()?"A CGPA of "+f2(t)+" is out of reach with these units.":"To finish on "+f2(t)+", all "+cu+" units of this semester need a GPA of <b>"+f2(Math.max(need,0))+"</b>.";
+ save()}
+document.addEventListener("input",function(e){var d=e.target.dataset;
+ if(d.k!=null){st.cut[d.k]=+e.target.value||0;update();return}
+ if(d.f==null)return;var m=st.s[d.i],v=e.target.value;
+ if(d.f=="n")m.n=v;else if(d.f=="c")m.c[d.j][0]=v;else if(d.f=="cu")m.c[d.j][1]=v;else if(d.f=="cg")m.c[d.j][2]=v;update()});
+document.addEventListener("toggle",function(e){var d=e.target;if(d.tagName=="DETAILS"&&d.dataset.i!=null&&st.s[d.dataset.i]){st.s[d.dataset.i].o=d.open?1:0;save()}},true);
+$("tg").addEventListener("input",function(e){st.t=e.target.value;update()});
+$("ps").addEventListener("change",update);
+$("entry").addEventListener("change",function(e){st.entry=+e.target.value;save()});
+$("scale").addEventListener("change",function(e){st.scale=+e.target.value;st.cut=st.scale==4?[3.5,3,2,1]:[4.5,3.5,2.4,1.5];st.s.forEach(function(m){m.c.forEach(function(c){if(c[2]&&sc()[c[2]]==null)c[2]=""})});if(st.t>mx())st.t=3.5;render()});
+$("fi").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();
+ r.onload=function(){try{var d=JSON.parse(r.result);if(!d.s||!d.s.length)throw 0;st=d;if(!st.cut)st.cut=[4.5,3.5,2.4,1.5];render();$("msg").textContent="Backup loaded."}catch(x){$("msg").textContent="That file is not a valid backup."}};r.readAsText(f);e.target.value=""});
+function msg(t){$("msg").textContent=t}
+document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var a=b.dataset.a,i=b.dataset.i,j=b.dataset.j;
+ if(a=="addsem"){st.s.push({n:"New semester",o:1,c:[["",3,"",""]]});render()}
+ else if(a=="addc"){st.s[i].c.push(["",3,"",""]);st.s[i].o=1;render()}
+ else if(a=="rm"){st.s[i].c.splice(j,1);st.s[i].o=1;render()}
+ else if(a=="del"){if(confirm("Delete this semester?")){st.s.splice(i,1);render()}}
+ else if(a=="load"){if(confirm("Replace all semesters with the department course list? Your grades will be cleared.")){st.s=mk(st.entry);render();msg("Department course list loaded.")}}
+ else if(a=="import"){$("fi").click()}
+ else if(a=="export"){var bl=new Blob([JSON.stringify(st)],{type:"application/json"}),u=URL.createObjectURL(bl),l=document.createElement("a");l.href=u;l.download="cgpa-backup.json";document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);msg("Backup file saved to your downloads.")}
+ else if(a=="copy"){var T=0,P=0,L=st.s.map(function(m){var r=calc(m);T+=r[0];P+=r[1];return m.n+": "+r[0]+" units, GPA "+(r[0]?f2(r[1]/r[0]):"-")});
+  var txt=L.join("\n")+"\nCGPA: "+f2(T?P/T:0)+" ("+klass(T?P/T:0)+")";
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){msg("Summary copied.")},function(){prompt("Copy this summary:",txt)});else prompt("Copy this summary:",txt)}});
+render();
+var dp;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;$("inst").hidden=false});
+$("inst").addEventListener("click",function(){if(dp){dp.prompt();dp=null;$("inst").hidden=true}});
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")==0){navigator.serviceWorker.register("sw.js").catch(function(){})}
+</script>
+</body>
+</html>
